@@ -62,7 +62,8 @@ public class Player : MonoBehaviour
             // If player is dead...
             if (m_health <= 0)
             {
-                //die
+                Debug.Log("die");
+                sm.youDied.transform.position = new Vector3(-4.41f, -3.18f, 0.0f);
             }
         }
         

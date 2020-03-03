@@ -32,9 +32,16 @@ public class SceneManager : MonoBehaviour
     //list of items
     public List<GameObject> items;
 
+    private IEnumerator coroutine;
+    bool respawning = false;
+
+    public GameObject youDied;
+
     // Start is called before the first frame update
     void Start()
     {
+        youDied = GameObject.Find("you died lmao");
+
         m_enemyCurrentHP = 100.0f;
 
         m_player = Instantiate(m_player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
@@ -59,9 +66,13 @@ public class SceneManager : MonoBehaviour
     {
 
         //if enemy is dead, enemy die
-        if (m_enemyCurrentHP <= 0) 
+        if (m_enemyCurrentHP <= 0 && !respawning) 
         {
-            Destroy(m_enemy);
+            respawning = true;
+            m_enemy.active = false;
+            coroutine = WaitAndRespawn(5.0f);
+            StartCoroutine(coroutine);
+            Debug.Log("this should run ONCE");
         }
 
 
@@ -90,6 +101,18 @@ public class SceneManager : MonoBehaviour
         {
             this.m_enemyCurrentHP = value;
         }
+    }
+
+    // respawn after being dead 5 seconds
+    private IEnumerator WaitAndRespawn(float waitTime)
+    {
+
+            yield return new WaitForSeconds(waitTime);
+            m_enemy.active = true;
+            m_enemyCurrentHP = 100.0f;
+            respawning = false;
+            Debug.Log("this should run ONCE, five seconds after the first one");
+
     }
 
 }
