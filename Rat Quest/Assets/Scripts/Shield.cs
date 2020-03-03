@@ -11,10 +11,13 @@ public class Shield : MonoBehaviour
     Player m_player;
     float m_blockRating = 10.0f;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        //m_player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class Shield : MonoBehaviour
     /// </summary>
     void BlockDamage()
     {
-        Debug.Log(m_blockRating + " damage blocked!");
+        m_player.block();
+        //Debug.Log(m_blockRating + " damage blocked!");
     }
 }

@@ -10,23 +10,27 @@ using UnityEngine.UI;
 public class Sword : MonoBehaviour
 {
     Player m_player;
-    float m_damage = 20.0f;
+    float m_damage = 10.0f;
     float m_enemyMaxHP = 100f;
-    float m_enemyCurrentHP;
+
+    SceneManager sm;
 
     public Slider enemyHealthbar;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+
         //m_player = GameObject.FindGameObjectWithTag("player").GetComponent<Player>();
-        m_enemyCurrentHP = m_enemyMaxHP;
+        sm.EnemyHP = m_enemyMaxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyHealthbar.value = m_enemyCurrentHP / m_enemyMaxHP;
+        enemyHealthbar.value = sm.EnemyHP / m_enemyMaxHP;
     }
 
     /// <summary>
@@ -37,7 +41,7 @@ public class Sword : MonoBehaviour
     void DealDamage()
     {
         Debug.Log(m_damage + " damage dealt to enemy.");
-        m_enemyCurrentHP -= m_damage;
+        sm.EnemyHP -= m_damage;
     }
 
     /// <summary>
