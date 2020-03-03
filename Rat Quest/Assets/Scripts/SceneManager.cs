@@ -29,6 +29,9 @@ public class SceneManager : MonoBehaviour
     public float attackPeriod;
     private float time;
 
+    //list of items
+    public List<GameObject> items;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,11 @@ public class SceneManager : MonoBehaviour
 
         //rat attack every 1 seconds
         attackPeriod = 1.0f;
+        for(int i = 0; i < items.Count; i++)
+        {
+            Instantiate(items[i], new Vector3(1.3f + (1.7f * i), 2.7f, -0.5f), Quaternion.identity);
+        }
+       
     }
 
     // Update is called once per frame

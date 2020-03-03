@@ -22,9 +22,10 @@ public class Draggable : MonoBehaviour
 
             this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY, 0);
         }
+
     }
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         if(Input.GetMouseButtonDown(0))
         {
@@ -36,10 +37,12 @@ public class Draggable : MonoBehaviour
             startPosY = mousePos.y - this.transform.localPosition.y;
 
             isPickedUp = true;
+
+            Debug.Log("mouse button down");
         }
     }
 
-    private void OnMouseUp()
+    void OnMouseUp()
     {
         isPickedUp = false;
     }

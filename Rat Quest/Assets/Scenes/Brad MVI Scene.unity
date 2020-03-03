@@ -637,6 +637,10 @@ MonoBehaviour:
     type: 3}
   playerHealthbar: {fileID: 1343926401}
   attackPeriod: 0
+  items:
+  - {fileID: 6094745644182484417, guid: 385b6d20112ec4f4f98e79fa237f41f4, type: 3}
+  - {fileID: 6094745644182484417, guid: 385b6d20112ec4f4f98e79fa237f41f4, type: 3}
+  - {fileID: 6094745644182484417, guid: 385b6d20112ec4f4f98e79fa237f41f4, type: 3}
 --- !u!4 &1370727271
 Transform:
   m_ObjectHideFlags: 0

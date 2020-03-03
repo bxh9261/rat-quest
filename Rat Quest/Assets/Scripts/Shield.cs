@@ -16,7 +16,7 @@ public class Shield : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         
     }
 
@@ -42,6 +42,7 @@ public class Shield : MonoBehaviour
     /// </summary>
     void BlockDamage()
     {
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         m_player.block();
         //Debug.Log(m_blockRating + " damage blocked!");
     }
