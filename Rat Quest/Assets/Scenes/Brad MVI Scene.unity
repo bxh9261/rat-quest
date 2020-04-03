@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -221,6 +222,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -572,7 +574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b9097da953cb46bff734922dcd555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealthbar: {fileID: 1164244035}
 --- !u!224 &1164244034 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7885288711485487556, guid: f14f6ac658a0458459eb35e4f251b6f5,
@@ -705,11 +706,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff8e91ea5776489170b2c41c32c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enemy: {fileID: 5834243014708370856, guid: 217ab136217dd024b8723ba9d1f84323, type: 3}
+  m_enemy: {fileID: -8818238940439032512, guid: 217ab136217dd024b8723ba9d1f84323,
+    type: 3}
   m_player: {fileID: 4881910900546316176, guid: 075098cf0fd8c6d409b5e19f09d1faeb,
     type: 3}
   playerHealthbar: {fileID: 1343926401}
-  attackPeriod: 0
+  enemyHealthbar: {fileID: 1164244035}
   items:
   - {fileID: 6094745644182484417, guid: 385b6d20112ec4f4f98e79fa237f41f4, type: 3}
   - {fileID: 6094745644182484417, guid: 385b6d20112ec4f4f98e79fa237f41f4, type: 3}

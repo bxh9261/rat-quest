@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void TakeDamage(float a_damage)
     {
-        if (!m_block && sm.EnemyHP > 0)
+        if (!m_block && sm.getCurrentEnemyHealth() > 0)
         {
             m_health -= a_damage;
 

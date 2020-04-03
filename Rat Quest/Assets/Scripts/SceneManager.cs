@@ -16,18 +16,12 @@ public class SceneManager : MonoBehaviour
     Shield m_shield;
 
     //emeny and player (instantiated on start, player is invisible)
-    public GameObject m_enemy;
+    public Enemy m_enemy;
     public Player m_player;
 
-    //should probably be moved to Player at some point
+    //health bars
     public Slider playerHealthbar;
-
-    //we currently don't have an enemy script so this is stored here
-    float m_enemyCurrentHP;
-
-    //rat attack every 1 second -- https://answers.unity.com/questions/17131/execute-code-every-x-seconds-with-update.html
-    public float attackPeriod;
-    private float time;
+    public Slider enemyHealthbar;
 
     //list of items
     public List<GameObject> items;
@@ -42,77 +36,69 @@ public class SceneManager : MonoBehaviour
     {
         youDied = GameObject.Find("you died lmao");
 
-        m_enemyCurrentHP = 100.0f;
-
         m_player = Instantiate(m_player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         m_sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         m_shield = GameObject.FindGameObjectWithTag("Shield").GetComponent<Shield>();
         m_enemy = Instantiate(m_enemy, new Vector3(-4.33f, 1.5f, -1.0f), Quaternion.identity);
         m_enemy.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
 
-        time = 0.0f;
-
-        //rat attack every 1 seconds
-        attackPeriod = 1.0f;
-        for(int i = 0; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             Instantiate(items[i], new Vector3(1.3f + (1.7f * i), 2.7f, -0.5f), Quaternion.identity);
         }
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //if enemy is dead, enemy die
-        if (m_enemyCurrentHP <= 0 && !respawning) 
+        if(m_enemy != null)
         {
-            respawning = true;
-            m_enemy.active = false;
-            coroutine = WaitAndRespawn(5.0f);
-            StartCoroutine(coroutine);
-            Debug.Log("this should run ONCE");
+            //enemy respawner, here since enemy script will be deleted on enemy die
+            if (m_enemy.EnemyHP <= 0 && !respawning)
+            {
+                respawning = true;
+                m_enemy.gameObject.active = false;
+                coroutine = WaitAndRespawn(5.0f);
+                StartCoroutine(coroutine);
+                Debug.Log("this should run ONCE");
+            }
+            enemyHealthbar.value = m_enemy.EnemyHP / m_enemy.EnemyMaxHP;
         }
 
-
-        //code for attack every 1 second
-        time += Time.deltaTime;
-
-        if (time >= attackPeriod)
-        {
-            time = 0.0f;
-
-            m_player.TakeDamage(10.0f);
-            playerHealthbar.value = m_player.getHealth() / 100.0f;
-        }
-
-        
     }
 
-    //getter and setter for enemyhp, if we eventually make an enemy script this should probably go there
-    public float EnemyHP
-    {
-        get
-        {
-            return this.m_enemyCurrentHP;
-        }
-        set
-        {
-            this.m_enemyCurrentHP = value;
-        }
-    }
+
 
     // respawn after being dead 5 seconds
     private IEnumerator WaitAndRespawn(float waitTime)
     {
 
             yield return new WaitForSeconds(waitTime);
-            m_enemy.active = true;
-            m_enemyCurrentHP = 100.0f;
+            m_enemy.gameObject.active = true;
+            m_enemy.EnemyHP = 100.0f;
             respawning = false;
             Debug.Log("this should run ONCE, five seconds after the first one");
 
+    }
+
+    public float getCurrentEnemyHealth()
+    {
+        return m_enemy.EnemyHP;
+    }
+
+    public bool DealDamageToPlayer(float dam)
+    {
+        m_player.TakeDamage(dam);
+        playerHealthbar.value = m_player.getHealth() / 100.0f;
+        return true;
+    }
+
+    public bool DealDamageToEnemy(float dam)
+    {
+        Debug.Log(dam + " damage dealt to enemy.");
+        m_enemy.EnemyHP -= dam;
+        return true;
     }
 
 }
