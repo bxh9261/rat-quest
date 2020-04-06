@@ -31,9 +31,19 @@ public class SceneManager : MonoBehaviour
 
     public GameObject youDied;
 
+    public int money;
+    public GameObject moneyUI;
+
+    public GameObject hallway;
+
     // Start is called before the first frame update
     void Start()
     {
+        money = 0;
+        moneyUI = GameObject.Find("Money UI");
+
+        hallway = GameObject.Find("Hallway");
+
         youDied = GameObject.Find("you died lmao");
 
         m_player = Instantiate(m_player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
@@ -62,8 +72,13 @@ public class SceneManager : MonoBehaviour
                 coroutine = WaitAndRespawn(5.0f);
                 StartCoroutine(coroutine);
                 Debug.Log("this should run ONCE");
+                money += (int)m_enemy.EnemyMaxHP;
             }
             enemyHealthbar.value = m_enemy.EnemyHP / m_enemy.EnemyMaxHP;
+            moneyUI.GetComponent<Text>().text = "Money: " + money.ToString();
+
+            hallway.GetComponent<Animator>().enabled = !m_enemy.gameObject.active;
+
         }
 
     }
