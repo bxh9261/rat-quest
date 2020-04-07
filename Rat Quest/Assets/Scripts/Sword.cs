@@ -12,14 +12,15 @@ public class Sword : MonoBehaviour
     Player m_player;
     float m_damage = 10.0f;
 
-    SceneManager sm;
+    SceneManager sceneM;
+    ScoreManager scoreM;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
-
+        sceneM = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+        scoreM = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -36,6 +37,10 @@ public class Sword : MonoBehaviour
     private void OnMouseDown()
     {
         // Deal damage to enemy
-        sm.DealDamageToEnemy(m_damage);
+        sceneM.DealDamageToEnemy(m_damage);
+        if (!sceneM.respawning)
+        {
+            scoreM.AddScore("swordHit");
+        }
     }
 }
