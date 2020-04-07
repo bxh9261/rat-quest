@@ -36,6 +36,9 @@ public class SceneManager : MonoBehaviour
 
     public GameObject hallway;
 
+    //Score 
+    ScoreManager scoreM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,8 @@ public class SceneManager : MonoBehaviour
         m_shield = GameObject.FindGameObjectWithTag("Shield").GetComponent<Shield>();
         m_enemy = Instantiate(m_enemy, new Vector3(-4.33f, 1.5f, -1.0f), Quaternion.identity);
         m_enemy.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
+
+        scoreM = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
         for (int i = 0; i < items.Count; i++)
         {
@@ -73,6 +78,7 @@ public class SceneManager : MonoBehaviour
                 StartCoroutine(coroutine);
                 Debug.Log("this should run ONCE");
                 money += (int)m_enemy.EnemyMaxHP;
+                scoreM.AddScore("ratKill");
             }
             enemyHealthbar.value = m_enemy.EnemyHP / m_enemy.EnemyMaxHP;
             moneyUI.GetComponent<Text>().text = "Money: " + money.ToString();
