@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Helmet
   m_EditorClassIdentifier: 
   ItemName: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 8d922b645296dc4418a9b5549f7467a1, type: 3}
   Rat: 0
   RatBonus: 0
   EquipmentType: 0

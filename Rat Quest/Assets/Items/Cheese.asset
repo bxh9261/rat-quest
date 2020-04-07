@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   ItemName: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 4b71cf612a52cde4890762c8ca1106ac, type: 3}

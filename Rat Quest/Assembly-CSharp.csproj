@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\DoubleClick.cs" />
      <Compile Include="Assets\Scripts\Draggable.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\EscapeButton.cs" />
      <Compile Include="Assets\Scripts\Inventory\EquipmentPanel.cs" />
      <Compile Include="Assets\Scripts\Inventory\EquipmentSlot.cs" />
      <Compile Include="Assets\Scripts\Inventory\EquippableItem.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
+     <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Shield.cs" />
      <Compile Include="Assets\Scripts\Sword.cs" />
      <Compile Include="Assets\Scripts\WeaponBob.cs" />

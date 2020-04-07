@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   ItemName: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 6355aa99488084b47aa254c1f0f96b40, type: 3}
   Rat: 0
   RatBonus: 0
   EquipmentType: 0
