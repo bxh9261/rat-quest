@@ -38,6 +38,9 @@ public class Sword : MonoBehaviour
     {
         // Deal damage to enemy
         sceneM.DealDamageToEnemy(m_damage);
-        scoreM.AddScore("swordHit");
+        if (!sceneM.respawning)
+        {
+            scoreM.AddScore("swordHit");
+        }
     }
 }

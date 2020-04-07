@@ -27,7 +27,7 @@ public class SceneManager : MonoBehaviour
     public List<GameObject> items;
 
     private IEnumerator coroutine;
-    bool respawning = false;
+    public bool respawning = false;
 
     public GameObject youDied;
 
