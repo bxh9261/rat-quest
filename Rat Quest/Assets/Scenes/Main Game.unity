@@ -2244,7 +2244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ff8e91ea5776489170b2c41c32c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enemy: {fileID: -8818238940439032512, guid: 217ab136217dd024b8723ba9d1f84323,
+  m_enemy: {fileID: -2596721770088913844, guid: 217ab136217dd024b8723ba9d1f84323,
     type: 3}
   m_player: {fileID: 4881910900546316176, guid: 075098cf0fd8c6d409b5e19f09d1faeb,
     type: 3}

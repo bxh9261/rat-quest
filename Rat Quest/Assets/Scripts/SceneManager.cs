@@ -16,7 +16,7 @@ public class SceneManager : MonoBehaviour
     Shield m_shield;
 
     //emeny and player (instantiated on start, player is invisible)
-    public Enemy m_enemy;
+    public PEnemy m_enemy;
     public Player m_player;
 
     //health bars
@@ -36,7 +36,7 @@ public class SceneManager : MonoBehaviour
 
     public GameObject hallway;
 
-    //Score 
+    //Score Manager
     ScoreManager scoreM;
 
     // Start is called before the first frame update
