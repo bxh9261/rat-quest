@@ -14,11 +14,13 @@ public class Sword : MonoBehaviour
 
     SceneManager sceneM;
     ScoreManager scoreM;
-    
+
+    AudioSource[] hitnkill;
 
     // Start is called before the first frame update
     void Start()
     {
+        hitnkill = GetComponents<AudioSource>();
         sceneM = GameObject.Find("SceneManager").GetComponent<SceneManager>();
         scoreM = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
@@ -38,9 +40,14 @@ public class Sword : MonoBehaviour
     {
         // Deal damage to enemy
         sceneM.DealDamageToEnemy(m_damage);
-        if (!sceneM.respawning)
+        if (!sceneM.respawning && sceneM.getCurrentEnemyHealth() > 0)
         {
+            hitnkill[0].Play();
             scoreM.AddScore("swordHit");
+        }
+        else if (!sceneM.respawning)
+        {
+            hitnkill[1].Play();
         }
     }
 }

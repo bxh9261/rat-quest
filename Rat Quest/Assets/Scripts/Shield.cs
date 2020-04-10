@@ -10,14 +10,15 @@ public class Shield : MonoBehaviour
 {
     Player m_player;
     float m_blockRating = 10.0f;
-
-    
+    AudioSource block;
+    SceneManager sceneM;
 
     // Start is called before the first frame update
     void Start()
     {
         //m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        
+        block = GetComponent<AudioSource>();
+        sceneM = GameObject.Find("SceneManager").GetComponent<SceneManager>();
     }
 
     // Update is called once per frame
@@ -32,6 +33,11 @@ public class Shield : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
+        if (!sceneM.respawning)
+        {
+            block.Play();
+        }
+        
         // Block incoming damage
         BlockDamage();
     }

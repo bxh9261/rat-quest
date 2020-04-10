@@ -39,11 +39,15 @@ public class SceneManager : MonoBehaviour
     //Score Manager
     ScoreManager scoreM;
 
+    AudioSource footsteps;
+
     // Start is called before the first frame update
     void Start()
     {
         money = 0;
         moneyUI = GameObject.Find("Money UI");
+
+        footsteps = GetComponent<AudioSource>();
 
         hallway = GameObject.Find("Hallway");
 
@@ -79,6 +83,7 @@ public class SceneManager : MonoBehaviour
                 Debug.Log("this should run ONCE");
                 money += (int)m_enemy.EnemyMaxHP;
                 scoreM.AddScore("ratKill");
+                footsteps.Play();
             }
             enemyHealthbar.value = m_enemy.EnemyHP / m_enemy.EnemyMaxHP;
             moneyUI.GetComponent<Text>().text = "Money: " + money.ToString();
@@ -100,7 +105,7 @@ public class SceneManager : MonoBehaviour
             m_enemy.EnemyHP = 100.0f;
             respawning = false;
             Debug.Log("this should run ONCE, five seconds after the first one");
-
+            footsteps.Pause();
     }
 
     public float getCurrentEnemyHealth()
