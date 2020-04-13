@@ -3,19 +3,34 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    //Variable for the main inventory
     [SerializeField]
     Inventory inventory;
 
+    //Variable for the equipment panel
     [SerializeField]
     EquipmentPanel equipmentPanel;
 
+    //Variable for the character stats panel
+    [SerializeField]
+    StatPanel statPanel;
+
+    //Variable for when dragging an item in the inventory
     [SerializeField]
     Image draggableItem;
+
+    //Character stats
+    public CharacterStat Strength;
+    public CharacterStat Defense;
+    public CharacterStat Vitality;
 
     private ItemSlot draggedSlot;
 
     private void Awake()
     {
+        //Set the stat types and then update the stat values
+        statPanel.SetStats(Strength, Defense, Vitality);
+        statPanel.UpdateStatValues();
 
         //Setup Events
         //Right Click
@@ -87,8 +102,7 @@ public class InventoryManager : MonoBehaviour
     {
         //Check if we can swap the two items using their slots
         if(dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
-        {
-            /*
+        {         
             EquippableItem dragItem = draggedSlot.Item as EquippableItem;
             EquippableItem dropItem = dropItemSlot.Item as EquippableItem;
 
@@ -102,7 +116,7 @@ public class InventoryManager : MonoBehaviour
                 if (dragItem != null) dragItem.Equip(this);
                 if (dropItem != null) dropItem.Unequip(this);
             }
-            */
+            statPanel.UpdateStatValues();
 
             //Swap the two items being dragged
             Item draggedItem = draggedSlot.Item;
@@ -126,7 +140,11 @@ public class InventoryManager : MonoBehaviour
                 {
                     //Swap the items out
                     inventory.AddItem(previousItem);
+                    previousItem.Unequip(this);
+                    statPanel.UpdateStatValues();
                 }
+                item.Equip(this);
+                statPanel.UpdateStatValues();
             }
         }
         //If we can't equip the item...
@@ -143,6 +161,8 @@ public class InventoryManager : MonoBehaviour
         //If the inventory's not full, and we can remove the item
         if(!inventory.IsFull() && equipmentPanel.RemoveItem(item))
         {
+            item.Unequip(this);
+            statPanel.UpdateStatValues();
             inventory.AddItem(item);
         }
     }
