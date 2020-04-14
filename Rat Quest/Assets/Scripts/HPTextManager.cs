@@ -11,6 +11,9 @@ public class HPTextManager : MonoBehaviour
     Text enemyHPText;
     Text enemyNameText;
 
+    bool deadEnemy;
+    bool deadPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,21 @@ public class HPTextManager : MonoBehaviour
 
         string enemyHPString = currentHP + "/" + maxHP;
 
-        enemyHPText.text = enemyHPString;
+        if (deadEnemy == true && currentHP > 0)
+        {
+            deadEnemy = false;
+            enemyHPText.text = enemyHPString;
+        }
+
+        if (deadEnemy == false)
+        {
+            enemyHPText.text = enemyHPString;
+
+            if (currentHP == 0)
+            {
+                deadEnemy = true;
+            }
+        }
 
         //Currently all enemies are just rats so no name changes
     }
@@ -46,7 +63,16 @@ public class HPTextManager : MonoBehaviour
 
         string playerHPString = currentHP + "/" + maxHP;
 
-        playerHPText.text = playerHPString;
+        if (deadPlayer == false)
+        {
+            playerHPText.text = playerHPString;
+
+            if (currentHP <= 0)
+            {
+                playerHPText.text = "0/100";
+                deadPlayer = true;
+            }
+        }
     }
 
 }
