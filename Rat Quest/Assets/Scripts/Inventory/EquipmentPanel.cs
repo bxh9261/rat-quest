@@ -11,6 +11,8 @@ public class EquipmentPanel : MonoBehaviour
     public event Action<ItemSlot> onEndDrag;
     public event Action<ItemSlot> onDrag;
     public event Action<ItemSlot> onDrop;
+    public event Action<ItemSlot> onPointerEnter;
+    public event Action<ItemSlot> onPointerExit;
 
 
     private void Start()
@@ -22,6 +24,8 @@ public class EquipmentPanel : MonoBehaviour
             equipmentSlots[i].onBeginDrag += onBeginDrag;
             equipmentSlots[i].onEndDrag += onEndDrag;
             equipmentSlots[i].onDrop += onDrop;
+            equipmentSlots[i].onPointerEnter += onPointerEnter;
+            equipmentSlots[i].onPointerExit += onPointerExit;
         }
     }
 

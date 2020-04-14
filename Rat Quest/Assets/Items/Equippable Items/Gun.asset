@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: It's a gun?
   Icon: {fileID: 21300000, guid: 6355aa99488084b47aa254c1f0f96b40, type: 3}
-  STRBonus: 50
+  Description: This joke item's just for testing.
+  STRBonus: 999
   DEFBonus: 0
   VITBonus: 0
   STRPercentBonus: 0
   DEFPercentBonus: 0
   VITPercentBonus: 0
-  EquipmentType: 0
+  EquipmentType: 4

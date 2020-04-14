@@ -44,6 +44,11 @@ public class StatPanel : MonoBehaviour
             //Set the displays to being active if there is a stat,
             //And as long as it doesn't surpass the amount of stats we have
             statDisplay[i].gameObject.SetActive(i < stats.Length);
+
+            if(i < stats.Length)
+            {
+                statDisplay[i].Stat = stats[i];
+            }
         }
     }
 
@@ -54,7 +59,7 @@ public class StatPanel : MonoBehaviour
         for (int i = 0; i < stats.Length; i++)
         {
             //Update the text values in them
-            statDisplay[i].ValueText.text = stats[i].Value.ToString();
+            statDisplay[i].UpdateStatValue();
         }
     }
 
@@ -66,7 +71,7 @@ public class StatPanel : MonoBehaviour
         for (int i = 0; i < statNames.Length; i++)
         {
             //Update the text names in them
-            statDisplay[i].NameText.text = statNames[i];
+            statDisplay[i].Name = statNames[i];
         }
     }
 }

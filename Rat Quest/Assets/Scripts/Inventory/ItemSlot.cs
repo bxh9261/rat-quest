@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     Image Image;
@@ -13,6 +13,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDragHandler, IBegi
     public event Action<ItemSlot> onEndDrag;
     public event Action<ItemSlot> onDrag;
     public event Action<ItemSlot> onDrop;
+    public event Action<ItemSlot> onPointerEnter;
+    public event Action<ItemSlot> onPointerExit;
 
     private Color normalColor = Color.white;
     private Color disabledColor = new Color(1,1,1, 0);
@@ -101,6 +103,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDragHandler, IBegi
         if (onDrop != null)
         {
             onDrop(this);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(onPointerEnter != null)
+        {
+            onPointerEnter(this);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (onPointerExit != null)
+        {
+            onPointerExit(this);
         }
     }
 }

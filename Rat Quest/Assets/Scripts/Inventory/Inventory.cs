@@ -19,6 +19,8 @@ public class Inventory : MonoBehaviour
     public event Action<ItemSlot> onEndDrag;
     public event Action<ItemSlot> onDrag;
     public event Action<ItemSlot> onDrop;
+    public event Action<ItemSlot> onPointerEnter;
+    public event Action<ItemSlot> onPointerExit;
 
 
     private void Start()
@@ -30,6 +32,8 @@ public class Inventory : MonoBehaviour
             itemSlots[i].onBeginDrag += onBeginDrag;
             itemSlots[i].onEndDrag += onEndDrag;
             itemSlots[i].onDrop += onDrop;
+            itemSlots[i].onPointerEnter += onPointerEnter;
+            itemSlots[i].onPointerExit += onPointerExit;
         }
     }
 

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee684314684362b41881a8d2259fabf2, type: 3}
   m_Name: Cheese
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: The Cheese
   Icon: {fileID: 21300000, guid: 4b71cf612a52cde4890762c8ca1106ac, type: 3}
+  Description: Delicious.

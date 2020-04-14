@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Helmet
+  m_Name: Shield
   m_EditorClassIdentifier: 
-  ItemName: Ratto
-  Icon: {fileID: 21300000, guid: 8d922b645296dc4418a9b5549f7467a1, type: 3}
-  Description: Hell yeah I'ma helmet!
+  ItemName: Ratto Shield
+  Icon: {fileID: 21300000, guid: e4737cb40cf4ee04485ef0ce4c60a8cc, type: 3}
+  Description: This rat'll protect you.
   STRBonus: 0
-  DEFBonus: 10
-  VITBonus: 5
+  DEFBonus: 25
+  VITBonus: 0
   STRPercentBonus: 0
-  DEFPercentBonus: 0.05
+  DEFPercentBonus: 0
   VITPercentBonus: 0
-  EquipmentType: 0
+  EquipmentType: 5

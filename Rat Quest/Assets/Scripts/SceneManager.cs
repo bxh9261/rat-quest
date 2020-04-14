@@ -24,7 +24,8 @@ public class SceneManager : MonoBehaviour
     public Slider enemyHealthbar;
 
     //list of items
-    public List<GameObject> items;
+    //EDITED BY NICK: sorry I had to kill this :- (
+    //public List<GameObject> items;
 
     private IEnumerator coroutine;
     public bool respawning = false;
@@ -61,10 +62,12 @@ public class SceneManager : MonoBehaviour
 
         scoreM = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
+        /*
         for (int i = 0; i < items.Count; i++)
         {
             Instantiate(items[i], new Vector3(1.3f + (1.7f * i), 2.7f, -0.5f), Quaternion.identity);
         }
+        */
 
     }
 

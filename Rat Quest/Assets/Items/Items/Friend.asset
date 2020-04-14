@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee684314684362b41881a8d2259fabf2, type: 3}
   m_Name: Friend
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: A friend?
   Icon: {fileID: 21300000, guid: 3fe8420b2d1ab29468251b8dca0d1f16, type: 3}
+  Description: How'd he get in here?

@@ -8,10 +8,12 @@ public enum EquipmentType
     Chest,
     Gloves, 
     Boots,
-    Weapon1,
+    //Weapon1,
    // Weapon2,
    // Accessory1,
    // Accessory2,
+   Weapon,
+   Shield
 }
 
 //STAT VALUES FOR EQUIPMENT
