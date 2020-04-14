@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 {
     float m_health = 100.0f;
     bool m_block = false;
+    public bool blockDebuff = false;    // is debuff active?
+    public float debuffTimer;   // how long does debuff last
+    float debuffDT; // delta time for debuff
 
     SceneManager sm;
 
@@ -20,6 +23,7 @@ public class Player : MonoBehaviour
     {
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
 
+        debuffDT = 0.0f;
         time = 0.0f;
         blockingPeriod = 1.0f;
     }
@@ -27,6 +31,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Timer for blocking debuff from Enemy2
+        if (blockDebuff)
+        {
+            debuffDT += Time.deltaTime;
+
+            if (debuffDT >= debuffTimer)
+            {
+                blockDebuff = false;
+            }
+        }
 
         if (m_block)
         {
@@ -53,6 +67,15 @@ public class Player : MonoBehaviour
     /// </summary>
     public void TakeDamage(float a_damage)
     {
+        // If the blocking debuff is active, the player takes 1/2 damage when blocking.
+        if (blockDebuff)
+        {
+            if (m_block)
+            {
+                m_health -= (a_damage / 2);
+            }
+        }
+
         if (!m_block && sm.getCurrentEnemyHealth() > 0)
         {
             m_health -= a_damage;

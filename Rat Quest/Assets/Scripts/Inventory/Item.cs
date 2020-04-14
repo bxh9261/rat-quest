@@ -7,4 +7,6 @@ public class Item : ScriptableObject
     public string ItemName;
     //Get it's image icon
     public Sprite Icon;
+    //Used for the item's descriptions
+    public string Description;
 }

@@ -19,6 +19,10 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     Image draggableItem;
 
+    //Variable for getting the tooltip
+    [SerializeField]
+    Tooltip tooltip;
+
     //Character stats
     public CharacterStat Strength;
     public CharacterStat Defense;
@@ -48,6 +52,38 @@ public class InventoryManager : MonoBehaviour
         //Drop Event
         inventory.onDrop += Drop;
         equipmentPanel.onDrop += Drop;
+        //On Pointer Enter
+        inventory.onPointerEnter += ShowTooltip;
+        equipmentPanel.onPointerEnter += ShowTooltip;
+        //On Pointer Exit
+        inventory.onPointerExit += HideTooltip;
+        equipmentPanel.onPointerExit += HideTooltip;
+
+    }
+
+    //When the function validates, set the tooltip
+    private void OnValidate()
+    {
+        if(tooltip == null)
+        {
+            tooltip = FindObjectOfType<Tooltip>();
+        }
+    }
+
+    //SHOWING THE TOOLTIP
+    //ITEMS
+    //Check for the item type, and send the appropriate information
+    private void ShowTooltip(ItemSlot itemSlot)
+    {
+        tooltip.ShowTooltip(itemSlot);
+    }
+
+    //STATS
+
+    //Stops showing the tooltip
+    private void HideTooltip(ItemSlot itemSlot)
+    {
+        tooltip.HideTooltip();
     }
 
     //Right Click
