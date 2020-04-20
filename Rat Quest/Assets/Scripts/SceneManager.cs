@@ -127,4 +127,10 @@ public class SceneManager : MonoBehaviour
         return true;
     }
 
+    public void restoreHealth(float val)
+    {
+        m_player.restoreHealth(val);
+        playerHealthbar.value = m_player.getHealth() / 100.0f;
+    }
+
 }

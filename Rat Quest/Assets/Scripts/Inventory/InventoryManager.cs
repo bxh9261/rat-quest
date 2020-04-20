@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    [SerializeField]
+    public SceneManager sm;
+
     //Variable for the main inventory
     [SerializeField]
     Inventory inventory;
@@ -38,7 +41,7 @@ public class InventoryManager : MonoBehaviour
 
         //Setup Events
         //Right Click
-        inventory.onRightClick += Equip;
+        inventory.onRightClick += ItemRightClick;
         equipmentPanel.onRightClick += Unequip;
         //Drag Event
         inventory.onDrag += Drag;
@@ -75,7 +78,7 @@ public class InventoryManager : MonoBehaviour
     //Check for the item type, and send the appropriate information
     private void ShowTooltip(ItemSlot itemSlot)
     {
-        tooltip.ShowTooltip(itemSlot);
+        tooltip.ShowTooltip(itemSlot.Item);
     }
 
     //STATS
@@ -86,13 +89,23 @@ public class InventoryManager : MonoBehaviour
         tooltip.HideTooltip();
     }
 
-    //Right Click
-    private void Equip(ItemSlot itemSlot)
+    //Right Click on a item
+    private void ItemRightClick(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-        if(equippableItem != null)
+       if(itemSlot.Item is EquippableItem)
         {
-            Equip(equippableItem);
+            Equip((EquippableItem)itemSlot.Item);
+        }
+        else if(itemSlot.Item is ConsumableItem)
+        {
+            ConsumableItem consumableItem = (ConsumableItem)itemSlot.Item;
+            consumableItem.Use(this);
+
+            if (consumableItem.isConsumable)
+            {
+                inventory.RemoveItem(consumableItem);
+                consumableItem.Destroy();
+            }
         }
     }
 

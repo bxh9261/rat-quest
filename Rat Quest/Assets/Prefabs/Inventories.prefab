@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b90fafcf195f884b860531a2e8c0d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sm: {fileID: 0}
   inventory: {fileID: 3125927056739079676}
   equipmentPanel: {fileID: 6176589400828997298}
   statPanel: {fileID: 6406037747833572809}

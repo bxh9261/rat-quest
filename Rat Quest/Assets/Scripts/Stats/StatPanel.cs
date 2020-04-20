@@ -52,11 +52,6 @@ public class StatPanel : MonoBehaviour
         }
     }
 
-    public CharacterStat[] GetStats()
-    {
-        return stats;
-    }
-
     //Update the values
     public void UpdateStatValues()
     {

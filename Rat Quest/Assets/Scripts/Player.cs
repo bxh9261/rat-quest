@@ -100,4 +100,10 @@ public class Player : MonoBehaviour
     {
         m_block = true;
     }
+
+    public void restoreHealth(float val)
+    {
+        m_health += val;
+        if (m_health > 100) m_health = 100.0f;
+    }
 }

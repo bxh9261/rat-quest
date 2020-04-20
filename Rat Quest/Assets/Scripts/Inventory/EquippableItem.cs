@@ -17,7 +17,7 @@ public enum EquipmentType
 }
 
 //STAT VALUES FOR EQUIPMENT
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Items/Equippable Item")]
 public class EquippableItem : Item
 {
     //FLAT STAT BONUSES
@@ -34,6 +34,16 @@ public class EquippableItem : Item
 
     //The equipment list
     public EquipmentType EquipmentType;
+
+    public override Item GetCopy()
+    {
+        return Instantiate(this);
+    }
+
+    public override void Destroy()
+    {
+        Destroy(this);
+    }
 
     //The player unequipped something, so remove the stat value from the pool
     internal void Unequip(InventoryManager i)
@@ -62,5 +72,80 @@ public class EquippableItem : Item
         if (DEFPercentBonus != 0) { i.Defense.AddModifiers(new StatModifier(DEFPercentBonus, StatModType.MultPercent, this)); }
         if (VITPercentBonus != 0) { i.Vitality.AddModifiers(new StatModifier(VITPercentBonus, StatModType.MultPercent, this)); }
         */
+    }
+
+    public override string GetItemDescription()
+    {
+        //Reset the string length
+        sb.Length = 0;
+
+        //Print the stats
+
+        //Strength
+        AddStats(STRBonus, "Strength");
+        AddStats(STRPercentBonus, "Strength", isPercent: true);
+
+        //Defense
+        AddStats(DEFBonus, "Defense");
+        AddStats(DEFPercentBonus, "Defense", isPercent: true);
+
+        //Vitality
+        AddStats(VITBonus, "Vitality");
+        AddStats(VITPercentBonus, "Vitality", isPercent: true);
+
+        //Go onto the next!
+        sb.AppendLine();
+        sb.Append(Description);
+
+        return sb.ToString();
+
+    }
+
+    public override string GetItemType()
+    {
+        return EquipmentType.ToString();
+    }
+
+    //Used for printing the stats for the tooltip
+    private void AddStats(float value, string statName, bool isPercent = false)
+    {
+        if (value != 0)
+        {
+            //If this isn't the first line...
+            if (sb.Length > 0)
+            {
+                //Go onto the next!
+                sb.AppendLine();
+            }
+
+            //If the value's positive
+            if (value > 0)
+            {
+                //Add the plus symbol to it!
+                //We don't have to worry about negative numbers
+                //Because the - will already be there.
+                sb.Append("+");
+            }
+
+            //Print for the percent value
+            if (isPercent)
+            {
+                //Print the value
+                sb.Append(value * 100);
+                //Then give a space
+                sb.Append("% ");
+            }
+            //Print for the normal flat value
+            else
+            {
+                //Print the value
+                sb.Append(value);
+                //Then give a space
+                sb.Append(" ");
+            }
+
+            //Then the name
+            sb.Append(statName);
+        }
     }
 }

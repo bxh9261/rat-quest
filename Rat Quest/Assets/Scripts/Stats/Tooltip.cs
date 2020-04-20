@@ -9,10 +9,10 @@ public class Tooltip : MonoBehaviour
     [SerializeField] Text InfoText;
     [SerializeField] Text StatsText;
 
-    //Used for building the item's strings
-    private StringBuilder sb = new StringBuilder();
-
     RectTransform rectTransform;
+
+    //Used for building the item's strings
+    protected static readonly StringBuilder sb = new StringBuilder();
 
     private void Start()
     {
@@ -26,68 +26,29 @@ public class Tooltip : MonoBehaviour
         float width = rectTransform.sizeDelta.x;
         float height = rectTransform.sizeDelta.y;
 
-        position.x -= width / 4;
-        position.y += height / 4;
+        position.x -= (width / 4)  + 20;
+        position.y += height / 6;
 
         this.transform.position = position;
     }
 
     //ITEMS
     //Show the tooltip for a equippable item
-    public void ShowTooltip(ItemSlot itemSlot)
+    public void ShowTooltip(Item item)
     {
-        EquippableItem item = itemSlot.Item as EquippableItem;
-        if (item != null)
+        if(item != null)
         {
             //Set the title to the item's name
             NameText.text = item.ItemName;
 
             //Set the info to what type the item is
-            InfoText.text = item.EquipmentType.ToString();
-
-            //Reset the string length
-            sb.Length = 0;
-
-            //Print the stats
-
-            //Strength
-            AddStats(item.STRBonus, "Strength");
-            AddStats(item.STRPercentBonus, "Strength", isPercent: true);
-
-            //Defense
-            AddStats(item.DEFBonus, "Defense");
-            AddStats(item.DEFPercentBonus, "Defense", isPercent: true);
-
-            //Vitality
-            AddStats(item.VITBonus, "Vitality");
-            AddStats(item.VITPercentBonus, "Vitality", isPercent: true);
-
-            //Go onto the next!
-            sb.AppendLine();
-            sb.Append(item.Description);
+            InfoText.text = item.GetItemType();
 
             //Set the text to the sb
-            StatsText.text = sb.ToString();
+            StatsText.text = item.GetItemDescription();
 
             //Set the tooltip box to being active
             gameObject.SetActive(true);
-        }
-        else
-        {
-            Item standardItem = itemSlot.Item as Item;
-            if(standardItem != null)
-            {
-                //Set the title to the item's name
-                NameText.text = standardItem.ItemName;
-
-                //Set the info to what type the item is
-                InfoText.text = "Basic Item";
-
-                StatsText.text = standardItem.Description;
-
-                //Set the tooltip box to being active
-                gameObject.SetActive(true);
-            }
         }
     }
 
@@ -109,49 +70,6 @@ public class Tooltip : MonoBehaviour
     public void HideTooltip()
     {
         gameObject.SetActive(false);
-    }
-
-    //Used for printing the stats for the tooltip
-    private void AddStats(float value, string statName, bool isPercent = false)
-    {
-        if(value != 0)
-        {
-            //If this isn't the first line...
-            if (sb.Length > 0)
-            {
-                //Go onto the next!
-                sb.AppendLine();
-            }
-
-            //If the value's positive
-            if(value > 0)
-            {
-                //Add the plus symbol to it!
-                //We don't have to worry about negative numbers
-                //Because the - will already be there.
-                sb.Append("+");
-            }
-
-            //Print for the percent value
-            if(isPercent)
-            {
-                //Print the value
-                sb.Append(value * 100);
-                //Then give a space
-                sb.Append("% ");
-            }
-            //Print for the normal flat value
-            else
-            {
-                //Print the value
-                sb.Append(value);
-                //Then give a space
-                sb.Append(" ");
-            }
-
-            //Then the name
-            sb.Append(statName);
-        }
     }
 
     //Used for getting the stat modifier info for each stat

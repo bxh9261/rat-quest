@@ -35,6 +35,8 @@ public class Inventory : MonoBehaviour
             itemSlots[i].onPointerEnter += onPointerEnter;
             itemSlots[i].onPointerExit += onPointerExit;
         }
+
+        SetStartingItems();
     }
 
     //On startup...
@@ -48,7 +50,7 @@ public class Inventory : MonoBehaviour
         }
 
         //Refresh it's UI
-        SetStartingItems();
+        //SetStartingItems();
     }
 
     //Refreshses the UI to draw the contents of the inventory
@@ -60,7 +62,7 @@ public class Inventory : MonoBehaviour
         //Draws from left to right slots
         for(; i < startingItems.Count && i < itemSlots.Length; i++)
         {
-            itemSlots[i].Item = startingItems[i];
+            itemSlots[i].Item = startingItems[i].GetCopy();
         }
 
         //If there isn't any items...
