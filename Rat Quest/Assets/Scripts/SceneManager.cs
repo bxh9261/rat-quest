@@ -23,10 +23,6 @@ public class SceneManager : MonoBehaviour
     public Slider playerHealthbar;
     public Slider enemyHealthbar;
 
-    //list of items
-    //EDITED BY NICK: sorry I had to kill this :- (
-    //public List<GameObject> items;
-
     private IEnumerator coroutine;
     public bool respawning = false;
 
@@ -35,6 +31,7 @@ public class SceneManager : MonoBehaviour
     public int money;
     public GameObject moneyUI;
 
+    //hallway animation
     public GameObject hallway;
 
     //Score Manager
