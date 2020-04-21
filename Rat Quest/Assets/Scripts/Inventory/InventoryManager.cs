@@ -27,8 +27,11 @@ public class InventoryManager : MonoBehaviour
     Tooltip tooltip;
 
     //Character stats
+    //used in Sword.cs to add attack
     public CharacterStat Strength;
+    //used in Player.cs to increase the amount of time the shield blocks damage
     public CharacterStat Defense;
+    //used in Player.cs to decrease damage taken from a hit
     public CharacterStat Vitality;
 
     private ItemSlot draggedSlot;

@@ -14,12 +14,14 @@ public class Sword : MonoBehaviour
 
     SceneManager sceneM;
     ScoreManager scoreM;
+    InventoryManager invM;
 
     AudioSource[] hitnkill;
 
     // Start is called before the first frame update
     void Start()
     {
+        invM = GameObject.FindGameObjectsWithTag("Inventory")[0].GetComponent<InventoryManager>();
         hitnkill = GetComponents<AudioSource>();
         sceneM = GameObject.Find("SceneManager").GetComponent<SceneManager>();
         scoreM = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
@@ -28,7 +30,8 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //the sword damage to the enemy is equal to its strength plus 10 (since if you have no sword you do 10 by default)
+        m_damage = Mathf.Floor(invM.Strength.Value) + 10;
     }
 
 

@@ -1816,6 +1816,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2186512967598162986, guid: 79810197eb159374aa5ad11951783388,
+        type: 3}
+      propertyPath: m_TagString
+      value: Inventory
+      objectReference: {fileID: 0}
     - target: {fileID: 2404260701188882918, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: _item
