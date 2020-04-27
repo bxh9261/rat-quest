@@ -16,15 +16,14 @@ public class Enemy2 : PEnemy
     void Start()
     {
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
-        specialUI = GameObject.Find("Money UI");
         enemyMaxHP = 150.0f;
         enemyCurrentHP = enemyMaxHP;
         basicAttackDmg = 15.0f; // basic attack does 10 damage.
         specialAttackDmg = 15.0f; // special attack does base damage if debuff is active.
         basicTime = 0.0f;
         specialTime = 0.0f;
-        bAtkTimer = 1.2f;   // basic attacks every 1 second.
-        sAtkTimer = 4.0f;   // special attacks every 3 seconds.
+        bAtkTimer = 1.2f;   // basic attacks every 1.2 second.
+        sAtkTimer = 4.0f;   // special attacks every 4 seconds.
     }
 
     // Update is called once per frame
@@ -54,7 +53,7 @@ public class Enemy2 : PEnemy
         if (specialTime >= sAtkTimer)
         {
             // Check to see if debuff is active
-            if (GetComponent<Player>().blockDebuff)
+            if (GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().blockDebuff)
             {
                 // If active, deal damage to player.
                 base.SpecialAttack();
@@ -64,8 +63,8 @@ public class Enemy2 : PEnemy
             // If not active, apply the debuff
             else
             {
-                GetComponent<Player>().blockDebuff = true;
-                GetComponent<Player>().debuffTimer = 10.0f;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().blockDebuff = true;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().debuffTimer = 10.0f;
 
                 Debug.Log("Blocking debuff applied!");
             }

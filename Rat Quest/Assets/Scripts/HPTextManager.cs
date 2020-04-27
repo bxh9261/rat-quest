@@ -32,8 +32,8 @@ public class HPTextManager : MonoBehaviour
 
     void UpdateEnemy()
     {
-        float maxHP = sceneManager.GetComponent<SceneManager>().m_enemy.EnemyMaxHP;
-        float currentHP = sceneManager.GetComponent<SceneManager>().m_enemy.EnemyHP;
+        float maxHP = sceneManager.GetComponent<SceneManager>().ReturnCurrentEnemy().EnemyMaxHP;
+        float currentHP = sceneManager.GetComponent<SceneManager>().ReturnCurrentEnemy().EnemyHP;
 
         string enemyHPString = currentHP + "/" + maxHP;
 

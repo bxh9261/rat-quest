@@ -339,6 +339,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &182017195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
+  m_Name: Sword(Clone)
+  m_EditorClassIdentifier: 
+  ItemName: Rat Sword
+  Icon: {fileID: 21300000, guid: aaa4d09a893d3794abbe798b301ad7f8, type: 3}
+  Description: Woah! A sword! Neat!
+  STRBonus: 25
+  DEFBonus: 0
+  VITBonus: 5
+  STRPercentBonus: 0.1
+  DEFPercentBonus: 0
+  VITPercentBonus: 0
+  EquipmentType: 4
 --- !u!224 &234636880 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8674477760797110402, guid: 79810197eb159374aa5ad11951783388,
@@ -363,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ce385f5aca8254eba8f1afad0bac6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &249714671
+--- !u!114 &407654287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,18 +395,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Gun(Clone)
+  m_Name: Shield(Clone)
   m_EditorClassIdentifier: 
-  ItemName: A Gun!?!
-  Icon: {fileID: 21300000, guid: a0fd710433309e649afa136bd60fcd46, type: 3}
-  Description: Oh man! You're packin' heat now!
-  STRBonus: 999
-  DEFBonus: 0
+  ItemName: Ratto Shield
+  Icon: {fileID: 21300000, guid: f68562b812628204d9d6da4e9acab191, type: 3}
+  Description: This rat'll protect you.
+  STRBonus: 0
+  DEFBonus: 25
   VITBonus: 0
   STRPercentBonus: 0
   DEFPercentBonus: 0
   VITPercentBonus: 0
-  EquipmentType: 4
+  EquipmentType: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +626,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 748618690}
+      objectReference: {fileID: 407654287}
     - target: {fileID: 1370799519749255524, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1983,7 +2005,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 249714671}
+      objectReference: {fileID: 1834289297}
     - target: {fileID: 3597233643721797667, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2038,7 +2060,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 1320288495}
+      objectReference: {fileID: 182017195}
     - target: {fileID: 4286623545577249981, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: m_Sprite
@@ -2889,28 +2911,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &748618690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Shield(Clone)
-  m_EditorClassIdentifier: 
-  ItemName: Ratto Shield
-  Icon: {fileID: 21300000, guid: f68562b812628204d9d6da4e9acab191, type: 3}
-  Description: This rat'll protect you.
-  STRBonus: 0
-  DEFBonus: 25
-  VITBonus: 0
-  STRPercentBonus: 0
-  DEFPercentBonus: 0
-  VITPercentBonus: 0
-  EquipmentType: 5
 --- !u!1 &830080522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,28 +3730,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245240602}
   m_CullTransparentMesh: 0
---- !u!114 &1320288495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Sword(Clone)
-  m_EditorClassIdentifier: 
-  ItemName: Rat Sword
-  Icon: {fileID: 21300000, guid: aaa4d09a893d3794abbe798b301ad7f8, type: 3}
-  Description: Woah! A sword! Neat!
-  STRBonus: 25
-  DEFBonus: 0
-  VITBonus: 5
-  STRPercentBonus: 0.1
-  DEFPercentBonus: 0
-  VITPercentBonus: 0
-  EquipmentType: 4
 --- !u!114 &1343926401 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3631972418364960166, guid: f14f6ac658a0458459eb35e4f251b6f5,
@@ -3777,6 +3755,7 @@ GameObject:
   - component: {fileID: 1370727272}
   - component: {fileID: 1370727273}
   - component: {fileID: 1370727274}
+  - component: {fileID: 1370727275}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -3801,8 +3780,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f1bf8a7b2ebccb44b137815161d05fd, type: 2}
   normalEquipPool: []
   rareEquipPool: []
-  m_enemy: {fileID: -2596721770088913844, guid: 217ab136217dd024b8723ba9d1f84323,
-    type: 3}
+  m_enemies:
+  - {fileID: -2596721770088913844, guid: 217ab136217dd024b8723ba9d1f84323, type: 3}
+  - {fileID: -8107348648767178466, guid: 705a813f1c166d749a184bce4232d554, type: 3}
   m_player: {fileID: 4881910900546316176, guid: 075098cf0fd8c6d409b5e19f09d1faeb,
     type: 3}
   playerHealthbar: {fileID: 1343926401}
@@ -4032,6 +4012,102 @@ AudioSource:
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1370727275
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370727269}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 96949b458cedd1641bcebd17664edda0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.37
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4366,6 +4442,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1834289297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
+  m_Name: Gun(Clone)
+  m_EditorClassIdentifier: 
+  ItemName: A Gun!?!
+  Icon: {fileID: 21300000, guid: a0fd710433309e649afa136bd60fcd46, type: 3}
+  Description: Oh man! You're packin' heat now!
+  STRBonus: 999
+  DEFBonus: 0
+  VITBonus: 0
+  STRPercentBonus: 0
+  DEFPercentBonus: 0
+  VITPercentBonus: 0
+  EquipmentType: 4
 --- !u!1 &1880029695
 GameObject:
   m_ObjectHideFlags: 0

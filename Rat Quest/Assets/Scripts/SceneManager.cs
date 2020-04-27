@@ -32,19 +32,26 @@ public class SceneManager : MonoBehaviour
     Shield m_shield;
 
     //emeny and player (instantiated on start, player is invisible)
-    public PEnemy m_enemy;
+    public PEnemy[] m_enemies;
     public Player m_player;
+
+    //keeps track of which enemy is currently alive (0 or 1 right now)
+    int enemyNum;
 
     //health bars
     public Slider playerHealthbar;
     public Slider enemyHealthbar;
+
+    //"Special Attack!"
+    public GameObject specialUI;
 
     private IEnumerator coroutine;
     public bool respawning = false;
 
     public GameObject youDied;
 
-    public int money;
+    //how many you've defeated so far
+    public int defeated;
 
     //hallway animation
     public GameObject hallway;
@@ -52,23 +59,39 @@ public class SceneManager : MonoBehaviour
     //Score Manager
     ScoreManager scoreM;
 
-    AudioSource footsteps;
+    //respawn time decreases as time goes on
+    float respawnTime;
+
+    AudioSource[] aud;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyNum = 0;
+        respawnTime = 5.0f;
+        defeated = 0;
 
-        footsteps = GetComponent<AudioSource>();
+        aud = GetComponents<AudioSource>();
 
         hallway = GameObject.Find("Hallway");
-
+        specialUI = GameObject.Find("Money UI");
         youDied = GameObject.Find("you died lmao");
 
         m_player = Instantiate(m_player, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         m_sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         m_shield = GameObject.FindGameObjectWithTag("Shield").GetComponent<Shield>();
-        m_enemy = Instantiate(m_enemy, new Vector3(-4.33f, 1.5f, -1.0f), Quaternion.identity);
-        m_enemy.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
+
+        //create enemies (currently only 2)
+        for(int i = 0; i < m_enemies.Length; i++)
+        {
+            m_enemies[i] = Instantiate(m_enemies[i], new Vector3(-4.33f, 1.5f, -1.0f), Quaternion.identity);
+            m_enemies[i].transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
+            if(i != 0)
+            {
+                m_enemies[i].gameObject.active = false;
+            }
+        }
+        
 
         scoreM = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
@@ -86,63 +109,92 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_enemy != null)
+        if(m_enemies[enemyNum] != null)
         {
             //enemy respawner, here since enemy script will be deleted on enemy die
-            if (m_enemy.EnemyHP <= 0 && !respawning)
+            if (m_enemies[enemyNum].EnemyHP <= 0 && !respawning)
             {
                 SpawnItem();
                 loot.SetActive(true);
                 respawning = true;
-                m_enemy.gameObject.active = false;
-                coroutine = WaitAndRespawn(5.0f);
+                for(int i = 0; i < m_enemies.Length; i++)
+                {
+                    m_enemies[i].gameObject.active = false;
+                }
+                coroutine = WaitAndRespawn(respawnTime);
                 StartCoroutine(coroutine);
-                money += (int)m_enemy.EnemyMaxHP;
+                defeated += 1;
                 scoreM.AddScore("ratKill");
-                footsteps.Play();
+                aud[0].Play();
             }
-            enemyHealthbar.value = m_enemy.EnemyHP / m_enemy.EnemyMaxHP;
-            if (m_enemy.EnemyHP < 0)
+            enemyHealthbar.value = m_enemies[enemyNum].EnemyHP / m_enemies[enemyNum].EnemyMaxHP;
+            if (m_enemies[enemyNum].EnemyHP < 0)
             {
-                m_enemy.EnemyHP = 0;
+                m_enemies[enemyNum].EnemyHP = 0;
             }
 
             
 
-            hallway.GetComponent<Animator>().enabled = !m_enemy.gameObject.active;
+            hallway.GetComponent<Animator>().enabled = respawning;
+        }
+
+        //after defeating 5 enemies, game gets tougher
+        if(defeated == 5)
+        {
+            for(int i = 0; i < m_enemies.Length; i++){
+                m_enemies[i].EnemyMaxHP = m_enemies[i].EnemyMaxHP+50;
+            }
+            aud[2].pitch *= 1.05946f;
+            defeated = 0;
+            //gradually make enemies come faster but don't go under 1 second
+            if(respawnTime > 1.0f)
+            {
+                respawnTime -= 0.5f;
+            }
         }
 
     }
 
+    // say "special attack!" on UI for 1 second
+    public IEnumerator SpecialUI()
+    {
+        specialUI.GetComponent<Text>().text = "Special Attack!";
+        yield return new WaitForSeconds(1.0f);
+        specialUI.GetComponent<Text>().text = "";
 
+    }
 
     // respawn after being dead 5 seconds
     private IEnumerator WaitAndRespawn(float waitTime)
     {
-            yield return new WaitForSeconds(waitTime);
-            m_enemy.gameObject.active = true;
-            m_enemy.EnemyHP = 100.0f;
-            respawning = false;
-            footsteps.Pause();
-            loot.SetActive(false);
-            droppedItems.Clear();
+        yield return new WaitForSeconds(waitTime);
+
+        enemyNum = (int)Mathf.Floor(Random.Range(0, m_enemies.Length));
+        m_enemies[enemyNum].gameObject.active = true;
+        m_enemies[enemyNum].EnemyHP = m_enemies[enemyNum].EnemyMaxHP;
+       
+        respawning = false;
+        aud[0].Pause();
+        loot.SetActive(false);
+        droppedItems.Clear();
     }
 
     public float getCurrentEnemyHealth()
     {
-        return m_enemy.EnemyHP;
+        return m_enemies[enemyNum].EnemyHP;
     }
 
     public bool DealDamageToPlayer(float dam)
     {
         m_player.TakeDamage(dam);
         playerHealthbar.value = m_player.getHealth() / 100.0f;
+        aud[3].Play();
         return true;
     }
 
     public bool DealDamageToEnemy(float dam)
     {
-        m_enemy.EnemyHP -= dam;
+        m_enemies[enemyNum].EnemyHP -= dam;
         return true;
     }
 
@@ -150,6 +202,7 @@ public class SceneManager : MonoBehaviour
     {
         m_player.restoreHealth(val);
         playerHealthbar.value = m_player.getHealth() / 100.0f;
+        aud[1].Play();
     }
 
     private void SpawnItem()
@@ -179,5 +232,10 @@ public class SceneManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public PEnemy ReturnCurrentEnemy()
+    {
+        return m_enemies[enemyNum];
     }
 }
