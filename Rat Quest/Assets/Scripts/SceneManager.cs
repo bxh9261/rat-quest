@@ -11,6 +11,22 @@ using UnityEngine.UI;
 
 public class SceneManager : MonoBehaviour
 {
+    [SerializeField]
+    GameObject loot;
+
+    Inventory droppedItems;
+
+    [SerializeField]
+    ConsumableItem[] consumablePool;
+
+    [SerializeField]
+    EquippableItem[] normalEquipPool;
+
+    [SerializeField]
+    EquippableItem[] rareEquipPool;
+
+    [Space]
+
     //sword and shield (on UI)
     Sword m_sword;
     Shield m_shield;
@@ -65,7 +81,9 @@ public class SceneManager : MonoBehaviour
             Instantiate(items[i], new Vector3(1.3f + (1.7f * i), 2.7f, -0.5f), Quaternion.identity);
         }
         */
-
+        droppedItems = loot.GetComponent<Inventory>();
+        loot.SetActive(false);
+        droppedItems.Clear();
     }
 
     // Update is called once per frame
@@ -76,6 +94,8 @@ public class SceneManager : MonoBehaviour
             //enemy respawner, here since enemy script will be deleted on enemy die
             if (m_enemy.EnemyHP <= 0 && !respawning)
             {
+                SpawnItem();
+                loot.SetActive(true);
                 respawning = true;
                 m_enemy.gameObject.active = false;
                 coroutine = WaitAndRespawn(5.0f);
@@ -89,7 +109,6 @@ public class SceneManager : MonoBehaviour
             moneyUI.GetComponent<Text>().text = "Money: " + money.ToString();
 
             hallway.GetComponent<Animator>().enabled = !m_enemy.gameObject.active;
-
         }
 
     }
@@ -99,13 +118,14 @@ public class SceneManager : MonoBehaviour
     // respawn after being dead 5 seconds
     private IEnumerator WaitAndRespawn(float waitTime)
     {
-
             yield return new WaitForSeconds(waitTime);
             m_enemy.gameObject.active = true;
             m_enemy.EnemyHP = 100.0f;
             respawning = false;
             Debug.Log("this should run ONCE, five seconds after the first one");
             footsteps.Pause();
+            loot.SetActive(false);
+            droppedItems.Clear();
     }
 
     public float getCurrentEnemyHealth()
@@ -133,4 +153,32 @@ public class SceneManager : MonoBehaviour
         playerHealthbar.value = m_player.getHealth() / 100.0f;
     }
 
+    private void SpawnItem()
+    {
+        //Get 3 chances of having an item spawn
+        for(int i = 0; i < 2; i++)
+        {
+            //Gives a 50% chance of spawning a item
+            if (Random.Range(0.0f, 100.0f) <= 50.0f)
+            {
+                float rng = Random.Range(0.0f, 100.0f);
+
+                //50% of a consumable item
+                if (rng < 1000.0f)
+                {
+                    droppedItems.AddItem(consumablePool[Random.Range(0, consumablePool.Length)]);
+                }
+                //30% of a equippable item
+                else if (rng < 80.0f)
+                {
+                    droppedItems.AddItem(normalEquipPool[Random.Range(0, normalEquipPool.Length)]);
+                }
+                //20% of a rare item
+                else
+                {
+                    droppedItems.AddItem(rareEquipPool[Random.Range(0, rareEquipPool.Length)]);
+                }
+            }
+        }
+    }
 }

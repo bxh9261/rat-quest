@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   ItemName: Ratto Shield
-  Icon: {fileID: 21300000, guid: e4737cb40cf4ee04485ef0ce4c60a8cc, type: 3}
+  Icon: {fileID: 21300000, guid: f68562b812628204d9d6da4e9acab191, type: 3}
   Description: This rat'll protect you.
   STRBonus: 0
   DEFBonus: 25

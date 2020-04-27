@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField][Range(0,500)] int ppRatKill = 100;
     [SerializeField][Range(0,500)] int ppItemBought = 100;
     [SerializeField][Range(0,100)] int ppSwordHit = 5;
+    [SerializeField][Range(0,250)] int ppDeleteItem = 250;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,10 @@ public class ScoreManager : MonoBehaviour
 
             case "itemBought":
                 AddScore(ppItemBought);
+                break;
+
+            case "itemDeleted":
+                AddScore(ppDeleteItem);
                 break;
 
             default:

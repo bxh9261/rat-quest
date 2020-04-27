@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
         }
 
         //Refresh it's UI
-        //SetStartingItems();
+        SetStartingItems();
     }
 
     //Refreshses the UI to draw the contents of the inventory
@@ -124,5 +124,18 @@ public class Inventory : MonoBehaviour
         }
         //The inventory is full
         return true;
+    }
+
+    public void Clear()
+    {
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if(itemSlots[i].Item != null)
+            {
+                //Set the slot images to null and don't draw them
+                itemSlots[i].Item.Destroy();
+                itemSlots[i].Item = null;
+            }
+        }
     }
 }

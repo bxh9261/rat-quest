@@ -6,9 +6,16 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     public SceneManager sm;
 
+    [SerializeField]
+    ScoreManager score;
+
     //Variable for the main inventory
     [SerializeField]
     Inventory inventory;
+
+    //Variable for the loot drops
+    [SerializeField]
+    Inventory loot;
 
     //Variable for the equipment panel
     [SerializeField]
@@ -25,6 +32,10 @@ public class InventoryManager : MonoBehaviour
     //Variable for getting the tooltip
     [SerializeField]
     Tooltip tooltip;
+
+    //Read in for our drop-item area
+    [SerializeField]
+    DeleteItem trashBox;
 
     //Character stats
     //used in Sword.cs to add attack
@@ -48,22 +59,29 @@ public class InventoryManager : MonoBehaviour
         equipmentPanel.onRightClick += Unequip;
         //Drag Event
         inventory.onDrag += Drag;
+        loot.onDrag += Drag;
         equipmentPanel.onDrag += Drag;
         //Begin Drag Event
         inventory.onBeginDrag += BeginDrag;
         equipmentPanel.onBeginDrag += BeginDrag;
+        loot.onBeginDrag += BeginDrag;
         //End Drag Event
         inventory.onEndDrag += EndDrag;
         equipmentPanel.onEndDrag += EndDrag;
+        loot.onEndDrag += EndDrag;
         //Drop Event
         inventory.onDrop += Drop;
         equipmentPanel.onDrop += Drop;
+        loot.onDrop += Drop;
+        trashBox.OnDropEvent += DeleteItem;
         //On Pointer Enter
         inventory.onPointerEnter += ShowTooltip;
         equipmentPanel.onPointerEnter += ShowTooltip;
+        loot.onPointerEnter += ShowTooltip;
         //On Pointer Exit
         inventory.onPointerExit += HideTooltip;
         equipmentPanel.onPointerExit += HideTooltip;
+        loot.onPointerExit += HideTooltip;
 
     }
 
@@ -124,7 +142,7 @@ public class InventoryManager : MonoBehaviour
     //Begin Drag
     private void BeginDrag(ItemSlot itemSlot)
     {
-        if(itemSlot.Item != null)
+        if (itemSlot.Item != null)
         {
             draggedSlot = itemSlot;
             draggableItem.sprite = itemSlot.Item.Icon;
@@ -152,8 +170,10 @@ public class InventoryManager : MonoBehaviour
     //On Drop
     private void Drop(ItemSlot dropItemSlot)
     {
+        if (draggedSlot == null) return;
+
         //Check if we can swap the two items using their slots
-        if(dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
+        if (dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
         {         
             EquippableItem dragItem = draggedSlot.Item as EquippableItem;
             EquippableItem dropItem = dropItemSlot.Item as EquippableItem;
@@ -217,5 +237,15 @@ public class InventoryManager : MonoBehaviour
             statPanel.UpdateStatValues();
             inventory.AddItem(item);
         }
+    }
+
+    //Delete an item and increase the score
+    public void DeleteItem()
+    {
+        if (draggedSlot == null) return;
+
+        draggedSlot.Item.Destroy();
+        draggedSlot.Item = null;
+        score.AddScore("itemDeleted");
     }
 }

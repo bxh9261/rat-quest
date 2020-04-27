@@ -1,8 +1,18 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class EquipmentPanel : MonoBehaviour
 {
+    [SerializeField] GameObject SwordImage;
+    [SerializeField] GameObject ShieldImage;
+    [SerializeField] GameObject SwordIcon;
+    [SerializeField] GameObject ShieldIcon;
+    [SerializeField] Sprite normalSword;
+    [SerializeField] Sprite normalShield;
+
+    [Space]
+
     [SerializeField] Transform equipmentSlotsParent;
     [SerializeField] EquipmentSlot[] equipmentSlots;
 
@@ -45,11 +55,23 @@ public class EquipmentPanel : MonoBehaviour
             //If the item is the correct equipment type...
             if (equipmentSlots[i].EquipmentType == item.EquipmentType)
             {
+                if (item.EquipmentType == EquipmentType.Weapon)
+                {
+                    SwordIcon.SetActive(false);
+                    SwordImage.GetComponent<SpriteRenderer>().sprite = item.Icon;
+                }
+                else
+                {
+                    ShieldIcon.SetActive(false);
+                    ShieldImage.GetComponent<SpriteRenderer>().sprite = item.Icon;
+                }
+
                 //They can equip it!
                 //Set the last item to what was in the slot,
                 //equip the new item, and return true
                 previousItem = (EquippableItem)equipmentSlots[i].Item;
                 equipmentSlots[i].Item = item;
+
                 return true;
             }
         }
@@ -70,6 +92,17 @@ public class EquipmentPanel : MonoBehaviour
             //If the item is the correct equipment type...
             if (equipmentSlots[i].Item == item)
             {
+                if (item.EquipmentType == EquipmentType.Weapon)
+                {
+                    SwordIcon.SetActive(true);
+                    SwordImage.GetComponent<SpriteRenderer>().sprite = normalSword;
+                }
+                else
+                {
+                    ShieldIcon.SetActive(true);
+                    ShieldImage.GetComponent<SpriteRenderer>().sprite = normalShield;
+                }
+
                 //They can remove it
                 //Set the item to null and return true
                 equipmentSlots[i].Item = null;
