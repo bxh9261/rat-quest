@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
         highscoreText.text = highscoreString;
     }
 
-    void AddScore(int increase)
+    public void AddScore(int increase)
     {
         score += increase;
     }
@@ -79,5 +79,4 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
     }
-
 }

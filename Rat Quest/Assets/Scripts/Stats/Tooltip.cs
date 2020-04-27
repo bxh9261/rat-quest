@@ -11,6 +11,8 @@ public class Tooltip : MonoBehaviour
 
     RectTransform rectTransform;
 
+    int flip = 1;
+
     //Used for building the item's strings
     protected static readonly StringBuilder sb = new StringBuilder();
 
@@ -26,7 +28,7 @@ public class Tooltip : MonoBehaviour
         float width = rectTransform.sizeDelta.x;
         float height = rectTransform.sizeDelta.y;
 
-        position.x -= (width / 4)  + 20;
+        position.x -= (flip * (width / 4))  + 20;
         position.y += height / 6;
 
         this.transform.position = position;
@@ -34,10 +36,11 @@ public class Tooltip : MonoBehaviour
 
     //ITEMS
     //Show the tooltip for a equippable item
-    public void ShowTooltip(Item item)
+    public void ShowTooltip(Item item, int _flip)
     {
-        if(item != null)
+        if (item != null)
         {
+            flip = _flip;
             //Set the title to the item's name
             NameText.text = item.ItemName;
 
@@ -87,7 +90,7 @@ public class Tooltip : MonoBehaviour
         {
             sb.Append(" (");
             //Print it's base value
-            sb.Append(stat.BaseValue);
+            //sb.Append(stat.BaseValue);
 
             //Check if the stat is adding or losing
             if (stat.Value > stat.BaseValue)

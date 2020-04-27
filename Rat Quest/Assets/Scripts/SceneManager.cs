@@ -17,13 +17,13 @@ public class SceneManager : MonoBehaviour
     Inventory droppedItems;
 
     [SerializeField]
-    ConsumableItem[] consumablePool;
+    Item[] basicPool;
 
     [SerializeField]
-    EquippableItem[] normalEquipPool;
+    Item[] normalPool;
 
     [SerializeField]
-    EquippableItem[] rareEquipPool;
+    Item[] rarePool;
 
     [Space]
 
@@ -216,19 +216,19 @@ public class SceneManager : MonoBehaviour
                 float rng = Random.Range(0.0f, 100.0f);
 
                 //50% of a consumable item
-                if (rng < 1000.0f)
+                if (rng < 50.0f)
                 {
-                    droppedItems.AddItem(consumablePool[Random.Range(0, consumablePool.Length)]);
+                    droppedItems.AddItem(basicPool[Random.Range(0, basicPool.Length)]);
                 }
                 //30% of a equippable item
                 else if (rng < 80.0f)
                 {
-                    droppedItems.AddItem(normalEquipPool[Random.Range(0, normalEquipPool.Length)]);
+                    droppedItems.AddItem(normalPool[Random.Range(0, normalPool.Length)]);
                 }
                 //20% of a rare item
                 else
                 {
-                    droppedItems.AddItem(rareEquipPool[Random.Range(0, rareEquipPool.Length)]);
+                    droppedItems.AddItem(rarePool[Random.Range(0, rarePool.Length)]);
                 }
             }
         }

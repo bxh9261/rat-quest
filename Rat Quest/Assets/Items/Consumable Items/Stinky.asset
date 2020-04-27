@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd6e4a1ce3a5bc4c814232f456d30f3, type: 3}
+  m_Name: Stinky
+  m_EditorClassIdentifier: 
+  ItemName: Stinky Cheese
+  Icon: {fileID: 21300000, guid: b72b12956820b8647b4c4a392d8306d9, type: 3}
+  Description: 
+  isConsumable: 1
+  Effects:
+  - {fileID: 11400000, guid: c5dd8191d2283a447aca869ebce692c6, type: 2}
+  - {fileID: 11400000, guid: 357bdfeebe49dec4fb1a6c2282714552, type: 2}

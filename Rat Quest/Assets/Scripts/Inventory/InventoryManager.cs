@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
     public SceneManager sm;
 
     [SerializeField]
-    ScoreManager score;
+    public ScoreManager score;
 
     //Variable for the main inventory
     [SerializeField]
@@ -77,7 +77,7 @@ public class InventoryManager : MonoBehaviour
         //On Pointer Enter
         inventory.onPointerEnter += ShowTooltip;
         equipmentPanel.onPointerEnter += ShowTooltip;
-        loot.onPointerEnter += ShowTooltip;
+        loot.onPointerEnter += ShowReverseTooltip;
         //On Pointer Exit
         inventory.onPointerExit += HideTooltip;
         equipmentPanel.onPointerExit += HideTooltip;
@@ -99,7 +99,12 @@ public class InventoryManager : MonoBehaviour
     //Check for the item type, and send the appropriate information
     private void ShowTooltip(ItemSlot itemSlot)
     {
-        tooltip.ShowTooltip(itemSlot.Item);
+        tooltip.ShowTooltip(itemSlot.Item, 1);
+    }
+
+    private void ShowReverseTooltip(ItemSlot itemSlot)
+    {
+        tooltip.ShowTooltip(itemSlot.Item, -1);
     }
 
     //STATS
@@ -181,12 +186,21 @@ public class InventoryManager : MonoBehaviour
             if(draggedSlot is EquipmentSlot)
             {
                 if (dragItem != null) dragItem.Unequip(this);
-                if (dropItem != null) dropItem.Equip(this);
+                if (dropItem != null)
+                {
+                    dropItem.Equip(this);
+                    equipmentPanel.SwapItem(dropItem);
+                }
+                else
+                {
+                    equipmentPanel.ClearItem(dragItem);
+                }
             }
             if (dropItemSlot is EquipmentSlot)
             {
                 if (dragItem != null) dragItem.Equip(this);
                 if (dropItem != null) dropItem.Unequip(this);
+                equipmentPanel.SwapItem(dragItem);
             }
             statPanel.UpdateStatValues();
 

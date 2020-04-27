@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Shield
+  m_Name: Light Shield
   m_EditorClassIdentifier: 
-  ItemName: Ratto Shield
-  Icon: {fileID: 21300000, guid: f68562b812628204d9d6da4e9acab191, type: 3}
-  Description: This rat'll protect you.
+  ItemName: Light Shield
+  Icon: {fileID: 21300000, guid: 139904c9ddcc37e4b9693200c2109db0, type: 3}
+  Description: It's made of light wood.
   STRBonus: 0
-  DEFBonus: 25
+  DEFBonus: 10
   VITBonus: 0
   STRPercentBonus: 0
   DEFPercentBonus: 0

@@ -52,6 +52,8 @@ public class EquipmentPanel : MonoBehaviour
         //Loop through all the slots
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
+            Debug.Log("CALLED");
+
             //If the item is the correct equipment type...
             if (equipmentSlots[i].EquipmentType == item.EquipmentType)
             {
@@ -112,5 +114,34 @@ public class EquipmentPanel : MonoBehaviour
 
         //They can't, so return false
         return false;
+    }
+
+    public void SwapItem(EquippableItem item)
+    {
+        if (item.EquipmentType == EquipmentType.Weapon)
+        {
+            SwordIcon.SetActive(false);
+            SwordImage.GetComponent<SpriteRenderer>().sprite = item.Icon;
+        }
+        else
+        {
+            ShieldIcon.SetActive(false);
+            ShieldImage.GetComponent<SpriteRenderer>().sprite = item.Icon;
+        }
+    }
+
+
+    public void ClearItem(EquippableItem item)
+    {
+        if (item.EquipmentType == EquipmentType.Weapon)
+        {
+            SwordIcon.SetActive(true);
+            SwordImage.GetComponent<SpriteRenderer>().sprite = normalSword;
+        }
+        else
+        {
+            ShieldIcon.SetActive(true);
+            ShieldImage.GetComponent<SpriteRenderer>().sprite = normalShield;
+        }
     }
 }
