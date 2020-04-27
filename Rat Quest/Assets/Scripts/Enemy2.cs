@@ -16,6 +16,7 @@ public class Enemy2 : PEnemy
     void Start()
     {
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+        specialUI = GameObject.Find("Money UI");
         enemyMaxHP = 150.0f;
         enemyCurrentHP = enemyMaxHP;
         basicAttackDmg = 15.0f; // basic attack does 10 damage.

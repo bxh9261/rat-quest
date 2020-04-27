@@ -8,6 +8,7 @@ public class Enemy1 : PEnemy
     void Start()
     {
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+        specialUI = GameObject.Find("Money UI");
         enemyMaxHP = 100.0f;
         enemyCurrentHP = enemyMaxHP;
         basicAttackDmg = 10.0f; // basic attack does 10 damage.
@@ -15,7 +16,7 @@ public class Enemy1 : PEnemy
         basicTime = 0.0f;   
         specialTime = 0.0f; 
         bAtkTimer = 1.0f;   // basic attacks every 1 second.
-        sAtkTimer = 3.0f;   // special attacks every 3 seconds.
+        sAtkTimer = 3.0f;   // special attacks every 3.1 seconds.
     }
 
     // Update is called once per frame

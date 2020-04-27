@@ -31,7 +31,7 @@ public class Sword : MonoBehaviour
     void Update()
     {
         //the sword damage to the enemy is equal to its strength plus 10 (since if you have no sword you do 10 by default)
-        m_damage = Mathf.Floor(invM.Strength.Value) + 10;
+        m_damage = Mathf.Round(invM.Strength.Value / 10) + 10;
     }
 
 
@@ -41,10 +41,11 @@ public class Sword : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
-        // Deal damage to enemy
-        sceneM.DealDamageToEnemy(m_damage);
+        
         if (!sceneM.respawning && sceneM.getCurrentEnemyHealth() > 0)
         {
+            // Deal damage to enemy
+            sceneM.DealDamageToEnemy(m_damage);
             hitnkill[0].Play();
             scoreM.AddScore("swordHit");
         }

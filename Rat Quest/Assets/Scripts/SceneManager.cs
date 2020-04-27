@@ -45,7 +45,6 @@ public class SceneManager : MonoBehaviour
     public GameObject youDied;
 
     public int money;
-    public GameObject moneyUI;
 
     //hallway animation
     public GameObject hallway;
@@ -58,8 +57,6 @@ public class SceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        money = 0;
-        moneyUI = GameObject.Find("Money UI");
 
         footsteps = GetComponent<AudioSource>();
 
@@ -100,13 +97,17 @@ public class SceneManager : MonoBehaviour
                 m_enemy.gameObject.active = false;
                 coroutine = WaitAndRespawn(5.0f);
                 StartCoroutine(coroutine);
-                Debug.Log("this should run ONCE");
                 money += (int)m_enemy.EnemyMaxHP;
                 scoreM.AddScore("ratKill");
                 footsteps.Play();
             }
             enemyHealthbar.value = m_enemy.EnemyHP / m_enemy.EnemyMaxHP;
-            moneyUI.GetComponent<Text>().text = "Money: " + money.ToString();
+            if (m_enemy.EnemyHP < 0)
+            {
+                m_enemy.EnemyHP = 0;
+            }
+
+            
 
             hallway.GetComponent<Animator>().enabled = !m_enemy.gameObject.active;
         }
@@ -122,7 +123,6 @@ public class SceneManager : MonoBehaviour
             m_enemy.gameObject.active = true;
             m_enemy.EnemyHP = 100.0f;
             respawning = false;
-            Debug.Log("this should run ONCE, five seconds after the first one");
             footsteps.Pause();
             loot.SetActive(false);
             droppedItems.Clear();
@@ -142,7 +142,6 @@ public class SceneManager : MonoBehaviour
 
     public bool DealDamageToEnemy(float dam)
     {
-        Debug.Log(dam + " damage dealt to enemy.");
         m_enemy.EnemyHP -= dam;
         return true;
     }

@@ -363,6 +363,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ce385f5aca8254eba8f1afad0bac6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &249714671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
+  m_Name: Gun(Clone)
+  m_EditorClassIdentifier: 
+  ItemName: A Gun!?!
+  Icon: {fileID: 21300000, guid: a0fd710433309e649afa136bd60fcd46, type: 3}
+  Description: Oh man! You're packin' heat now!
+  STRBonus: 999
+  DEFBonus: 0
+  VITBonus: 0
+  STRPercentBonus: 0
+  DEFPercentBonus: 0
+  VITPercentBonus: 0
+  EquipmentType: 4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +604,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 682017715}
+      objectReference: {fileID: 748618690}
     - target: {fileID: 1370799519749255524, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1961,7 +1983,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 798452987}
+      objectReference: {fileID: 249714671}
     - target: {fileID: 3597233643721797667, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2016,7 +2038,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _item
       value: 
-      objectReference: {fileID: 2047711494}
+      objectReference: {fileID: 1320288495}
     - target: {fileID: 4286623545577249981, guid: 79810197eb159374aa5ad11951783388,
         type: 3}
       propertyPath: m_Sprite
@@ -2834,28 +2856,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &682017715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Shield(Clone)
-  m_EditorClassIdentifier: 
-  ItemName: Ratto Shield
-  Icon: {fileID: 21300000, guid: f68562b812628204d9d6da4e9acab191, type: 3}
-  Description: This rat'll protect you.
-  STRBonus: 0
-  DEFBonus: 25
-  VITBonus: 0
-  STRPercentBonus: 0
-  DEFPercentBonus: 0
-  VITPercentBonus: 0
-  EquipmentType: 5
 --- !u!1 &739822080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,7 +2889,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &798452987
+--- !u!114 &748618690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2899,18 +2899,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Gun(Clone)
+  m_Name: Shield(Clone)
   m_EditorClassIdentifier: 
-  ItemName: A Gun!?!
-  Icon: {fileID: 21300000, guid: a0fd710433309e649afa136bd60fcd46, type: 3}
-  Description: Oh man! You're packin' heat now!
-  STRBonus: 999
-  DEFBonus: 0
+  ItemName: Ratto Shield
+  Icon: {fileID: 21300000, guid: f68562b812628204d9d6da4e9acab191, type: 3}
+  Description: This rat'll protect you.
+  STRBonus: 0
+  DEFBonus: 25
   VITBonus: 0
   STRPercentBonus: 0
   DEFPercentBonus: 0
   VITPercentBonus: 0
-  EquipmentType: 4
+  EquipmentType: 5
 --- !u!1 &830080522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,8 +2945,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -598, y: -183}
-  m_SizeDelta: {x: 188.7, y: 25.9}
+  m_AnchoredPosition: {x: -389.34, y: -180.7}
+  m_SizeDelta: {x: 397.36, y: 28.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830080524
 MonoBehaviour:
@@ -2961,7 +2961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2979,7 +2979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Money: 0'
+  m_Text: 
 --- !u!222 &830080525
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3730,6 +3730,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245240602}
   m_CullTransparentMesh: 0
+--- !u!114 &1320288495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
+  m_Name: Sword(Clone)
+  m_EditorClassIdentifier: 
+  ItemName: Rat Sword
+  Icon: {fileID: 21300000, guid: aaa4d09a893d3794abbe798b301ad7f8, type: 3}
+  Description: Woah! A sword! Neat!
+  STRBonus: 25
+  DEFBonus: 0
+  VITBonus: 5
+  STRPercentBonus: 0.1
+  DEFPercentBonus: 0
+  VITPercentBonus: 0
+  EquipmentType: 4
 --- !u!114 &1343926401 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3631972418364960166, guid: f14f6ac658a0458459eb35e4f251b6f5,
@@ -3788,7 +3810,6 @@ MonoBehaviour:
   respawning: 0
   youDied: {fileID: 0}
   money: 0
-  moneyUI: {fileID: 0}
   hallway: {fileID: 0}
 --- !u!4 &1370727271
 Transform:
@@ -4764,28 +4785,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2047711494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d27adc0e8f7b847a1ad9bc128f116f, type: 3}
-  m_Name: Sword(Clone)
-  m_EditorClassIdentifier: 
-  ItemName: Rat Sword
-  Icon: {fileID: 21300000, guid: aaa4d09a893d3794abbe798b301ad7f8, type: 3}
-  Description: Woah! A sword! Neat!
-  STRBonus: 25
-  DEFBonus: 0
-  VITBonus: 5
-  STRPercentBonus: 0.1
-  DEFPercentBonus: 0
-  VITPercentBonus: 0
-  EquipmentType: 4
 --- !u!1 &2087380571
 GameObject:
   m_ObjectHideFlags: 0

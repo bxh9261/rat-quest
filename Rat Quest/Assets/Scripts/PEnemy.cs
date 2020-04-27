@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
     Programmer: Durrell Bedassie
@@ -22,14 +23,18 @@ public class PEnemy : MonoBehaviour
     protected float bAtkTimer; // time enemy takes to basic attack
     protected float sAtkTimer; // time enemy takes to special attack
 
+    public GameObject specialUI;
+
     //scene manager
     protected SceneManager sm;
     #endregion
+    
 
     // Start is called before the first frame update
     void Start()
     {
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+        specialUI = GameObject.Find("Money UI");
 
         basicTime = 0.0f;
         specialTime = 0.0f;
@@ -94,6 +99,16 @@ public class PEnemy : MonoBehaviour
             specialTime = 0.0f;
 
             Debug.Log("Enemy special attacks for: " + specialAttackDmg);
+            StartCoroutine(SpecialUI());
         }
+    }
+
+    // say "special attack!" on UI for 1 second
+    private IEnumerator SpecialUI()
+    {
+        specialUI.GetComponent<Text>().text = "Special Attack!";
+        yield return new WaitForSeconds(1.0f);
+        specialUI.GetComponent<Text>().text = "";
+
     }
 }
