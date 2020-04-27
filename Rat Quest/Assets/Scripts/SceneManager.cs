@@ -189,6 +189,7 @@ public class SceneManager : MonoBehaviour
         m_player.TakeDamage(dam);
         playerHealthbar.value = m_player.getHealth() / 100.0f;
         aud[3].Play();
+        Debug.Log("aud3 played");
         return true;
     }
 
