@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class Player : MonoBehaviour
 {
@@ -97,15 +98,16 @@ public class Player : MonoBehaviour
         if (!m_block && sm.getCurrentEnemyHealth() > 0)
         {
             m_health -= a_damage;
-            
 
-            // If player is dead...
-            if (m_health <= 0)
-            {
-                Debug.Log("die");
-            }
         }
-        
+        // If player is dead...
+        if (m_health <= 0)
+        {
+            Debug.Log("die");
+            UnitySceneManager.LoadScene("Main Menu");
+        }
+
+
     }
 
     public float getHealth()

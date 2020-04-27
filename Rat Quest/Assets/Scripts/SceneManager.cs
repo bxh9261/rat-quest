@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 /*
  * Scene Manager
  * Prorgrammer: Brad Hanel
  * Created: 3/3/20
- */ 
+ */
 
 public class SceneManager : MonoBehaviour
 {
